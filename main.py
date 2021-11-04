@@ -7,9 +7,6 @@ app = Flask(__name__)
 api = Api(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///gleandb.db'
 db = SQLAlchemy(app)
-test = 'test'
-test2 = "test2"
-test3 = "test3"
 
 @dataclass
 class UserModel(db.Model):
