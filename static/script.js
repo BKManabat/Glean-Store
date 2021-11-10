@@ -90,3 +90,23 @@ function deleteProduct(product_id) {
       }
   });
 }
+
+function swsignup(){
+    var state = document.getElementById("login-screen")
+    var state2 = document.getElementById("signup-screen")
+    if (state.style.display !== "none" && state2.style.display === "none" ){
+        state.style.display = "none"
+        state2.style.display ="block"
+        console.log("signup displayed, login hidden");
+    }
+}
+
+function swlogin(){
+    var state = document.getElementById("signup-screen")
+    var state2 = document.getElementById("login-screen")
+    if (state.style.display !== "none" && state2.style.display === "none" ){
+        state.style.display = "none"
+        state2.style.display ="block"
+        console.log("login displayed, signup hidden");
+    }
+}
