@@ -4,8 +4,8 @@ function login() {
       type: 'POST',
       url: 'https://Glean-Store.marcovisaya.repl.co/verify',
       data: {
-          'username': document.getElementById("floatingInput").value,
-          'password': document.getElementById("floatingPassword").value
+          'username': document.getElementById("loginUsername").value,
+          'password': document.getElementById("loginPassword").value
       },
       success: function (data) {
         console.log(data)
