@@ -52,5 +52,11 @@
 }
 .wrapper-card-login {
   width:25%;
-  padding: 20px;
+  padding: 40px;
+  border-radius: 5px;
+  border: 1px solid #73AD21;
 }
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */

@@ -4,20 +4,20 @@
       {
         "id": "a2694447-0145-44a2-910c-e71e15934d63",
         "line": 5,
-        "version": 1083,
+        "version": 1087,
         "index": 117
       },
       {
         "id": "02d0c212-e605-413d-8b3f-cf31a7b76195",
-        "line": 9,
-        "version": 1083,
-        "index": 237
+        "line": 8,
+        "version": 1087,
+        "index": 236
       },
       {
         "id": "40cd816e-cf43-4ed4-9bf7-0f6a9976dfc0",
-        "line": 42,
-        "version": 1083,
-        "index": 1603
+        "line": 37,
+        "version": 1087,
+        "index": 1319
       }
     ],
     "templates/admin/manage_products.html": [

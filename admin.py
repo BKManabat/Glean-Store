@@ -5,14 +5,22 @@ app = Blueprint('admin', __name__, url_prefix='/admin')
 
 @app.route('/')
 def index():
-  return render_template('admin/index.html')
-
-@app.route('/dashboard')
-def admin_dashboard():
-  # if 'admin' in session:
+  if 'admin' in session:
     return render_template('admin/dashboard.html')
-  # else:
-  #   return redirect(url_for('/'))
+  else:
+    return redirect(url_for('admin.login'))
+
+@app.route('/login')
+def login():
+  if 'admin' in session:
+    return redirect(url_for('admin.index'))
+  else:
+    return render_template('admin/login.html')
+
+@app.route('/logout')
+def logout():
+  session.pop('admin', None)
+  return redirect(url_for('admin.index'))
 
 @app.route('/manage_users')
 def manage_users():

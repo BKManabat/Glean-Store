@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, redirect, render_template, session, url_for
 from API.api_users import API_Users
 from API.api_products import API_Products
+from API.api_admin import API_Admin
 from database.tables import Tables
 import admin
 import requests
@@ -12,8 +13,10 @@ app.secret_key = 'OurSecretKey'
 app.register_blueprint(admin.app)
 tables = Tables(app)
 
+
 API_Users.register_route(app, tables)
 API_Products.register_route(app, tables)
+API_Admin.register_route(app, tables)
 
 
 @app.route('/')
@@ -31,6 +34,7 @@ def home():
   response = requests.get('https://Glean-Store.marcovisaya.repl.co/get_products')
   if response:
     products = response.json()
+    print(session)
     if 'username' not in session:
       return render_template("home.html", username = None, products = products)
     else:
@@ -40,7 +44,7 @@ def home():
 
 @app.route('/logout')
 def logout():
-  session.clear()
+  session.pop('username', None)
   return redirect(url_for('index'))
 
 @app.after_request

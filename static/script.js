@@ -1,5 +1,5 @@
-function login() {
-  console.log('login');
+function login(e) {
+  e.preventDefault();
   $.ajax({
       type: 'POST',
       url: 'https://Glean-Store.marcovisaya.repl.co/verify',
@@ -8,7 +8,7 @@ function login() {
           'password': document.getElementById("loginPassword").value
       },
       success: function (data) {
-        console.log(data)
+        console.log("Logged In")
         window.location.href = "https://Glean-Store.marcovisaya.repl.co/store";
       },
       error: function (jqXHR, exception) {
@@ -23,7 +23,6 @@ function login() {
 }
 
 function signup() {
-  console.log('signup');
   $.ajax({
       type: 'PUT',
       url: 'https://Glean-Store.marcovisaya.repl.co/verify',
@@ -40,7 +39,7 @@ function signup() {
 }
 
 function logout() {
-  alert("Logged out");
+  console.log("Logged Out")
   window.location.href = 'https://Glean-Store.marcovisaya.repl.co/logout'
 }
 

@@ -4,13 +4,9 @@ import datetime
 class API_Products:
   @staticmethod
   def register_route(app, tables):
+
     db = tables.get_db()
-    ProductModel = tables.get_product_model()
-
-    # product1 = ProductModel(name="Sinigang",category="Ulam",description="Tasty", ingredients="Kangkong", price=99.99, popularity=0, date_added = datetime.datetime.now(), stock = 20,image = "https://imgur.com/YL1uueq" )
-
-    # db.session.add(product1)
-    # db.session.commit()
+    ProductModel = tables.ProductModel
 
     @app.route('/get_products', methods=['GET'])
     def get_products():
