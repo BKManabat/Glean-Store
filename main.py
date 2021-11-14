@@ -3,6 +3,7 @@ from API.api_users import API_Users
 from API.api_products import API_Products
 from API.api_admin import API_Admin
 from API.api_orders import API_Orders
+from API.api_courier import API_Courier
 from database.tables import Tables
 import admin
 import courier
@@ -24,7 +25,7 @@ API_Users.register_route(app, tables)
 API_Products.register_route(app, tables)
 API_Admin.register_route(app, tables)
 API_Orders.register_route(app, tables)
-
+API_Courier.register_route(app, tables)
 
 @app.route('/')
 def index():

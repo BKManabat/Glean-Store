@@ -105,7 +105,7 @@ class Tables:
       username = db.Column(db.String(100), nullable=False)
       password = db.Column(db.String(50), nullable=False)
       phone = db.Column(db.String(20), nullable=False)
-      status = db.Column(db.String(20), nullable=False)
+      status = db.Column(db.String(20), nullable=True, default="Unavailable")
     
     self.db.create_all()
     return CourierModel
