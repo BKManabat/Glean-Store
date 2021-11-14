@@ -2,21 +2,28 @@ from flask import Flask, request, jsonify, redirect, render_template, session, u
 from API.api_users import API_Users
 from API.api_products import API_Products
 from API.api_admin import API_Admin
+from API.api_orders import API_Orders
 from database.tables import Tables
 import admin
+import courier
 import requests
+from datetime import datetime
+from pytz import timezone
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database/gleandb.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'OurSecretKey'
 app.register_blueprint(admin.app)
+app.register_blueprint(courier.app)
 tables = Tables(app)
 
 
 API_Users.register_route(app, tables)
 API_Products.register_route(app, tables)
 API_Admin.register_route(app, tables)
+API_Orders.register_route(app, tables)
 
 
 @app.route('/')

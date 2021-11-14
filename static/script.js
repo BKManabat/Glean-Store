@@ -57,38 +57,20 @@ function delete_user(uid) {
   });
 }
 
-function add_product() {
+function add_order() {
   $.ajax({
       type: 'PUT',
-      url: 'https://Glean-Store.marcovisaya.repl.co/admin/add_product',
+      url: 'https://Glean-Store.marcovisaya.repl.co/add_order',
       data: {
-          'name': document.getElementById('addProduct-name').value,
-          'category': document.getElementById('addProduct-category').value,
-          'description': document.getElementById('addProduct-description').value,
-          'ingredients': document.getElementById('addProduct-ingredients').value ,
-          'price': document.getElementById('addProduct-price').value,
-          'stock': document.getElementById('addProduct-stock').value,
-          'image': document.getElementById('addProduct-image').value
+        
       },
       success: function (data) {
-        alert('Product added!')
+        alert('Successfully ordered')
       }
   });
 }
 
-function deleteProduct(product_id) {
-  $.ajax({
-      type: 'DELETE',
-      url: 'https://Glean-Store.marcovisaya.repl.co/admin/delete_product',
-      data: {
-          'id': product_id
-      },
-      success: function (data) {
-        document.getElementById(product_id).remove();
-        alert('Product deleted!')
-      }
-  });
-}
+//main switcher
 
 function swsignup(){
     var state = document.getElementById("login-screen")
@@ -108,4 +90,61 @@ function swlogin(){
         state2.style.display ="block"
         console.log("login displayed, signup hidden");
     }
+}
+
+function swsubscription(){
+  var state = document.getElementById("individualcards")
+  var state1 = document.getElementById("subscriptioncards")
+  var state2 = document.getElementById("favoritescards")
+  var state3 = document.getElementById("individualhead")
+  var state4 = document.getElementById("subscriptionhead")
+  var state5 = document.getElementById("favoriteshead")
+
+  if (state1.style.display === "none" && (state.style.display !== "none" || state2.style.display !== "none") ){
+    state.style.display = "none"
+    state1.style.display = "block"
+    state2.style.display = "none"
+    state3.style.display = "none"
+    state4.style.display = "block"
+    state5.style.display = "none"
+    console.log("subscription displayed")
+}
+}
+
+function swfavorites(){
+  var state = document.getElementById("individualcards")
+  var state1 = document.getElementById("subscriptioncards")
+  var state2 = document.getElementById("favoritescards")
+  var state3 = document.getElementById("individualhead")
+  var state4 = document.getElementById("subscriptionhead")
+  var state5 = document.getElementById("favoriteshead")
+
+  if (state2.style.display === "none" && (state.style.display !== "none" || state1.style.display !== "none") ){
+    state.style.display = "none"
+    state1.style.display = "none"
+    state2.style.display = "block"
+    state3.style.display = "none"
+    state4.style.display = "none"
+    state5.style.display = "block"
+    console.log("favorites displayed")
+}
+}
+
+function swindividual(){
+  var state = document.getElementById("individualcards")
+  var state1 = document.getElementById("subscriptioncards")
+  var state2 = document.getElementById("favoritescards")
+  var state3 = document.getElementById("individualhead")
+  var state4 = document.getElementById("subscriptionhead")
+  var state5 = document.getElementById("favoriteshead")
+
+  if (state.style.display === "none" && (state1.style.display !== "none" || state2.style.display !== "none") ){
+    state.style.display = "block"
+    state1.style.display = "none"
+    state2.style.display = "none"
+    state3.style.display = "block"
+    state4.style.display = "none"
+    state5.style.display = "none"
+    console.log("individual displayed")
+}
 }

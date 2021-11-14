@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, redirect, render_template, session
-import datetime
+from utilities.utilities_date import time_now
 
 class API_Products:
   @staticmethod
@@ -15,7 +15,7 @@ class API_Products:
 
     @app.route('/admin/add_product', methods=['PUT'])
     def add_product():
-      product = ProductModel(name=request.form['name'],category=request.form['category'],description=request.form['description'], ingredients=request.form['ingredients'], price=request.form['price'], popularity=0, date_added=datetime.datetime.now(), stock=request.form['stock'], image=request.form['image'])
+      product = ProductModel(name=request.form['name'],category=request.form['category'],description=request.form['description'], ingredients=request.form['ingredients'], price=request.form['price'], popularity=0, date_added = time_now(), stock=request.form['stock'], image=request.form['image'])
 
       db.session.add(product)
       db.session.commit()
@@ -32,7 +32,7 @@ class API_Products:
       else:
         return '',400
 
-    @app.route('/admin/edit_product', methods=['DELETE'])
+    @app.route('/admin/edit_product', methods=['POST'])
     def edit_product():
       product = ProductModel.query.filter_by(id=request.form['id']).first()
       if product:

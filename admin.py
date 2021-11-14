@@ -39,3 +39,13 @@ def manage_products():
   if response:
     products = response.json()
   return render_template('admin/manage_products.html', products=products)
+
+@app.route('/manage_orders')
+def manage_orders():
+  response = requests.get('https://Glean-Store.marcovisaya.repl.co/admin/get_orders')
+  orders = []
+
+  if response:
+    orders = response.json()
+  return render_template('admin/manage_orders.html', orders=orders)
+

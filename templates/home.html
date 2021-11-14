@@ -27,17 +27,17 @@
         </div>
         <div class="col-md-4 d-flex justify-content-center justify-content-md-end align-items-center">
           <div class="d-flex">
-              <a class="nav-link text-muted ms-3 mx-2" href="#!">Cart</a>
+              <a class="nav-link text-muted ms-3 mx-2" href="#!"><i class="bi bi-bag"></i> &nbsp; Cart</a>
               <a class="nav-link text-muted mx-2" style="display:none" href="#!">Sign in</a>
             <div class="dropdown">
               <a class="nav-link text-muted dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Account
+                  <i class="bi bi-person-circle"></i> &nbsp; Account
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">My Account</a></li>
+                <li><a class="dropdown-item" href="#"> My Account</a></li>
                 <li><a class="dropdown-item" href="#">Settings</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#" onclick="logout();">Log out</a></li>
+                <li><a class="dropdown-item" href="#">Log out</a></li>
               </ul>
             </div>
           </div>
@@ -45,32 +45,43 @@
       </div>
     </div>
   </div>
-  <nav class="navbar navbar-expand-lg navbar-light bg-white">
+  <nav class="navbar navbar-nav navbar-expand-lg navbar-light bg-white">
     <div class="container justify-content-center justify-content-md-between">
-      <ul class="navbar-nav flex-row">
-        <li class="nav-item me-lg-0 d-none d-md-inline-block">
-          <a class="nav-link" href="#" onclick="swindividual()">Individual</a>
-        </li>
-        <li class="nav-item ms-4 me-lg-0 d-none d-md-inline-block">
-          <a class="nav-link" href="#" onclick="swsubscription()">Subscription</a>
-        </li>
-        <li class="nav-item ms-4 me-lg-0 d-none d-md-inline-block">
-          <a class="nav-link" href="#" onclick="swfavorites()">Favorites</a>
-        </li>
-      </ul>
+      <div class="container-fluid">
+        <ul class="navbar-nav flex-row">
+          <li class="nav-item me-lg-0 d-md-inline-block">
+            <a class="nav-link" href="#" onclick="swindividual()"><i class="bi bi-person"></i> &nbsp; Individual</a>
+          </li>
+          <li class="nav-item ms-4 me-lg-0 d-md-inline-block">
+            <a class="nav-link" href="#" onclick="swsubscription()"><i class="bi bi-box"></i> &nbsp; Subscription</a>
+          </li>
+          <li class="nav-item ms-4 me-lg-0 d-md-inline-block">
+            <a class="nav-link" href="#" onclick="swfavorites()"><i class="bi bi-star"></i> &nbsp; Favorites</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 </header>
     <main>
         <section class="store-heading-bg">
-          <div class="container-fluid store-head-label" id="individualhead" style="display:block;">
-            <img src="./static/assets/individual.svg"  class="img-fluid" width="750px" alt="individual on demand">
+          <div class="jumbotron jumbotron-fluid store-head-label" id="individualhead" style="display:block;" >
+            <div class="container">
+              <h1 class="display-4" style="color:white">Individual</h1>
+              <p class="lead" style="color:white">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+            </div>
           </div>
-          <div class="container-fluid store-head-label" id="subscriptionhead" style="display:none;">
-            <img src="./static/assets/subscription.svg"  class="img-fluid" width="750px" alt="individual on demand">
+          <div class="jumbotron jumbotron-fluid store-head-label" id="subscriptionhead" style="display:none;" >
+            <div class="container">
+              <h1 class="display-4" style="color:white">Subscription</h1>
+              <p class="lead" style="color:white">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+            </div>
           </div>
-          <div class="container-fluid store-head-label" id="favoriteshead" style="display:none;">
-            <img src="./static/assets/favorites.svg"  class="img-fluid" width="350px" alt="individual on demand">
+          <div class="jumbotron jumbotron-fluid store-head-label" id="favoriteshead" style="display:none;" >
+            <div class="container">
+              <h1 class="display-4" style="color:white">Favorites</h1>
+              <p class="lead" style="color:white">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+            </div>
           </div>
         </section>
  
@@ -78,17 +89,52 @@
 
           <div class="container" id="individualcards" style="display:block"> <!--Individuals Section-->
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+              {% for product in products %}
               <div class="col">
-                <div class="card shadow-sm">
-                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                <div class="card shadow-sm" data-bs-toggle="modal" data-bs-target="#exampleModal"> <!--Change data-bs-tagrget to id of target modal-->
+                  <img src={{product.image}} alt={{product.name}} class="bd-placeholder-img card-img-top">
                   <div class="card-body">
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <h2> {{ product.name }} </h2>
+                    <p class="card-text"> {{ product.description }}</p>
                     <div class="d-flex justify-content-between align-items-center">
                         <button type="button" class="btn btn-sm btn-outline-secondary">Add to Cart</button>
                     </div>
                   </div>
                 </div>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> <!--change id to data-bs-target-->
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header border-0">
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="container px-4 px-lg-5 my-5 mt-3">
+                        <div class="row gx-4 gx-lg-5 align-items-center">
+                            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
+                            <div class="col-md-6">
+                                <div class="small mb-1">SKU: BST-498</div>
+                                <h1 class="display-6 fw-bolder">Shop item template</h1>
+                                <div class="fs-5 mb-5">
+                                    <span class="text-decoration-line-through">$45.00</span>
+                                    <span>$40.00</span>
+                                </div>
+                                <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
+                                <div class="d-flex">
+                                    <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
+                                    <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                                        <i class="bi-cart-fill me-1"></i>
+                                        Add to cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
               </div>
+              </div>
+              </div>
+              {% endfor %}
             </div>
             
           </div>
